@@ -1,0 +1,16 @@
+C:\Users\L3TI\Downloads\files\bin\Debug\net8.0-windows\CyberSecurityBotPart2.exe
+C:\Users\L3TI\Downloads\files\bin\Debug\net8.0-windows\CyberSecurityBotPart2.deps.json
+C:\Users\L3TI\Downloads\files\bin\Debug\net8.0-windows\CyberSecurityBotPart2.runtimeconfig.json
+C:\Users\L3TI\Downloads\files\bin\Debug\net8.0-windows\CyberSecurityBotPart2.dll
+C:\Users\L3TI\Downloads\files\bin\Debug\net8.0-windows\CyberSecurityBotPart2.pdb
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityBotPart2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityBotPart2.AssemblyInfoInputs.cache
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityBotPart2.AssemblyInfo.cs
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityBotPart2.csproj.CoreCompileInputs.cache
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityBotPart2.dll
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\refint\CyberSecurityBotPart2.dll
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityBotPart2.pdb
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityBotPart2.genruntimeconfig.cache
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\ref\CyberSecurityBotPart2.dll
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityAwarenessBot.Forms.MainForm.resources
+C:\Users\L3TI\Downloads\files\obj\Debug\net8.0-windows\CyberSecurityBotPart2.csproj.GenerateResource.cache
