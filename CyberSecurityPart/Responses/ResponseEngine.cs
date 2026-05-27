@@ -2,19 +2,14 @@
 
 namespace CyberSecurityAwarenessBot.Responses
 {
-    /// <summary>
-    /// Expanded from Part 1's Dictionary-based ResponseEngine.
-    /// Now supports multiple random response variants per topic,
-    /// follow-up expansion, and memory-personalised replies.
-    /// </summary>
+
     public class ResponseEngine
     {
         private readonly Random _rng = new();
 
-        /// <summary>The last topic matched — used for follow-up requests.</summary>
         public string? LastDetectedTopic { get; private set; }
 
-        // ── Topic model ───────────────────────────────────────────────────────
+        //Topic model
         private class Topic
         {
             public string Name { get; init; } = string.Empty;
@@ -26,7 +21,7 @@ namespace CyberSecurityAwarenessBot.Responses
         private readonly List<Topic> _topics;
         public ResponseEngine() => _topics = Build();
 
-        // ── Public API ────────────────────────────────────────────────────────
+        //This is a public API
 
         public string GetResponse(string input, string name, UserMemory memory)
         {
@@ -60,14 +55,14 @@ namespace CyberSecurityAwarenessBot.Responses
                 : t.FollowUp.Replace("{n}", name);
         }
 
-        // ── Topics ────────────────────────────────────────────────────────────
+        //Topics
 
         private static List<Topic> Build() => new()
         {
             new Topic
             {
                 Name = "greeting",
-                Keywords = new[] { "hello","hi","hey","howzit","good morning","good afternoon" },
+                Keywords = new[] { "hello","hi","hey","good morning","good afternoon" },
                 Responses = new[]
                 {
                     "Hi {n}! What cybersecurity topic can I help you with today?",
@@ -79,7 +74,7 @@ namespace CyberSecurityAwarenessBot.Responses
             new Topic
             {
                 Name = "how are you",
-                Keywords = new[] { "how are you","how r u","how do you do" },
+                Keywords = new[] { "how are you","how r u"," },
                 Responses = new[]
                 {
                     "Doing great, {n}! Ready to help you stay safe online. What would you like to know?",
@@ -91,7 +86,7 @@ namespace CyberSecurityAwarenessBot.Responses
             new Topic
             {
                 Name = "purpose",
-                Keywords = new[] { "purpose","what are you","what do you do","what can you do","help","what can i ask","topics" },
+                Keywords = new[] { "purpose","what are you","what do you do","help","what can i ask" },
                 Responses = new[]
                 {
                     "I am your cybersecurity awareness guide, {n}!\n\n" +
@@ -107,7 +102,7 @@ namespace CyberSecurityAwarenessBot.Responses
             new Topic
             {
                 Name = "passwords",
-                Keywords = new[] { "password","passcode","credentials","passphrase" },
+                Keywords = new[] { "password","passcode"},
                 Responses = new[]
                 {
                     "Password safety for {n}:\n\n" +
@@ -121,25 +116,15 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • A passphrase like 'PurpleCat$Runs9' is strong AND memorable.\n" +
                     "  • Avoid personal details like birthdays or pet names.\n" +
                     "  • Change passwords immediately if you suspect a breach.\n" +
-                    "  • Never share your password — not even with support staff.",
+                    "  • Never share your password not even with support staff.",
 
-                    "'Password123' is one of the most hacked passwords, {n}!\n\n" +
-                    "  • The longer the password the harder it is to crack.\n" +
-                    "  • Use a different password for every account.\n" +
-                    "  • A password manager generates and stores them for you.\n" +
-                    "  • Check haveibeenpwned.com to see if yours has leaked."
                 },
-                FollowUp =
-                    "Deeper on passwords, {n}:\n\n" +
-                    "  • Brute-force attacks try millions of combinations per second — length wins.\n" +
-                    "  • Dictionary attacks target common words — avoid them entirely.\n" +
-                    "  • NIST now recommends long passphrases over complex short passwords.\n" +
-                    "  • Bitwarden is free, open-source and widely trusted as a password manager."
+               
             },
             new Topic
             {
                 Name = "password manager",
-                Keywords = new[] { "manager","bitwarden","lastpass","1password","keepass" },
+                Keywords = new[] { "manager" },
                 Responses = new[]
                 {
                     "Password managers are a game changer, {n}!\n\n" +
@@ -154,17 +139,12 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • They flag duplicate or weak passwords automatically.\n" +
                     "  • Your vault is encrypted — even the company cannot see it."
                 },
-                FollowUp =
-                    "More on password managers, {n}:\n\n" +
-                    "  • Install the browser extension for seamless autofill.\n" +
-                    "  • Back up your vault regularly in a secure location.\n" +
-                    "  • Enable emergency access for a trusted contact.\n" +
-                    "  • If you lose your master password most managers cannot recover it — store it safely."
+              
             },
             new Topic
             {
                 Name = "phishing",
-                Keywords = new[] { "phishing","phish","scam","fake email","suspicious email","spam","smishing","vishing" },
+                Keywords = new[] { "phishing","phish","scam","fake email","suspicious email","spam" },
                 Responses = new[]
                 {
                     "Phishing watch-list for {n}:\n\n" +
@@ -178,20 +158,11 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Legitimate banks NEVER ask for your PIN or password by email.\n" +
                     "  • Check for subtle misspellings: 'Micros0ft', 'Paypa1'.\n" +
                     "  • SMS phishing is called 'smishing' — never click surprise text links.\n" +
-                    "  • Phone call phishing is 'vishing' — hang up and call back officially.",
+                   ,
 
-                    "Spear phishing targets YOU specifically, {n}!\n\n" +
-                    "  • Attackers use your real name, employer, or recent activity to seem legit.\n" +
-                    "  • If an email creates panic or unusual urgency — that is a red flag.\n" +
-                    "  • Use email filtering and report phishing to your provider.\n" +
-                    "  • Enable 2FA so stolen credentials alone cannot log in."
+                
                 },
-                FollowUp =
-                    "Deeper on phishing, {n}:\n\n" +
-                    "  • 'Whaling' targets executives with highly convincing fake emails.\n" +
-                    "  • Phishing kits are sold on the dark web — attacks are increasingly automated.\n" +
-                    "  • DMARC/DKIM email authentication reduces phishing from your own domain.\n" +
-                    "  • Report phishing at reportphishing.apwg.org."
+                
             },
             new Topic
             {
@@ -211,12 +182,7 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Keep your OS updated — patches close the doors malware exploits.\n" +
                     "  • Avoid pirated software — commonly bundled with malware."
                 },
-                FollowUp =
-                    "More on malware, {n}:\n\n" +
-                    "  • Rootkits hide deep in the OS — very hard to detect.\n" +
-                    "  • Keyloggers record every keystroke including passwords.\n" +
-                    "  • Fileless malware lives in memory only — no file traces.\n" +
-                    "  • If infected: disconnect from the internet immediately and seek expert help."
+               
             },
             new Topic
             {
@@ -236,17 +202,12 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Disable macros in Office documents unless you specifically need them.\n" +
                     "  • Follow the 3-2-1 backup rule: 3 copies, 2 media types, 1 offsite."
                 },
-                FollowUp =
-                    "Deeper on ransomware, {n}:\n\n" +
-                    "  • WannaCry (2017) hit 230,000 computers in 150 countries in days.\n" +
-                    "  • Ransomware-as-a-Service lets criminals rent attack tools cheaply.\n" +
-                    "  • Average ransom demand exceeded $1 million for businesses in 2024.\n" +
-                    "  • Immutable backups (cannot be altered or deleted) are the gold standard."
+               
             },
             new Topic
             {
                 Name = "2FA",
-                Keywords = new[] { "2fa","two factor","two-factor","mfa","multi factor","authenticator" },
+                Keywords = new[] { "2fa","two factor","multi factor","authenticator" },
                 Responses = new[]
                 {
                     "2FA doubles your account security, {n}!\n\n" +
@@ -261,17 +222,12 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Most major sites now support 2FA — check Settings > Security.\n" +
                     "  • Even basic SMS 2FA is far better than no 2FA at all."
                 },
-                FollowUp =
-                    "More on 2FA, {n}:\n\n" +
-                    "  • TOTP (Time-based One-Time Passwords) are the most common type.\n" +
-                    "  • Passkeys are the next evolution — biometric logins replacing passwords.\n" +
-                    "  • FIDO2/WebAuthn enables phishing-resistant authentication.\n" +
-                    "  • If you lose your authenticator app, backup codes let you recover access."
+               
             },
             new Topic
             {
                 Name = "VPN",
-                Keywords = new[] { "vpn","public wifi","public wi-fi","free wifi","hotspot","open network" },
+                Keywords = new[] { "vpn","public wifi","public wi-fi","free wifi" },
                 Responses = new[]
                 {
                     "Public Wi-Fi safety for {n}:\n\n" +
@@ -286,17 +242,12 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Your personal phone hotspot is safer than coffee shop Wi-Fi.\n" +
                     "  • A VPN also hides your IP address from websites you visit."
                 },
-                FollowUp =
-                    "More on VPNs, {n}:\n\n" +
-                    "  • A VPN routes traffic through an encrypted tunnel to a remote server.\n" +
-                    "  • VPNs do not make you anonymous — your VPN provider can still see traffic.\n" +
-                    "  • For maximum privacy combine a VPN with Tor — though it is slower.\n" +
-                    "  • Always pick a VPN with a verified no-logs policy."
+              
             },
             new Topic
             {
                 Name = "encryption",
-                Keywords = new[] { "encryption","encrypt","encrypted","decrypt","end-to-end","e2ee" },
+                Keywords = new[] { "encryption","encrypt","encrypted" },
                 Responses = new[]
                 {
                     "Encryption keeps your data unreadable to attackers, {n}!\n\n" +
@@ -311,17 +262,12 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Your phone's storage is encrypted by default on modern devices.\n" +
                     "  • VPNs encrypt your internet traffic on public networks."
                 },
-                FollowUp =
-                    "Deeper on encryption, {n}:\n\n" +
-                    "  • Symmetric encryption uses one key; asymmetric uses a public/private pair.\n" +
-                    "  • TLS (Transport Layer Security) is what HTTPS uses under the hood.\n" +
-                    "  • Quantum computing may eventually challenge current encryption standards.\n" +
-                    "  • Certificate pinning prevents man-in-the-middle attacks on mobile apps."
+               
             },
             new Topic
             {
                 Name = "safe browsing",
-                Keywords = new[] { "browsing","safe browsing","https","website","browser","secure site","url","link","download" },
+                Keywords = new[] { "browsing","safe browsing","https","website","browser","secure site","url","link" },
                 Responses = new[]
                 {
                     "Safe browsing habits for {n}:\n\n" +
@@ -336,17 +282,12 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Only download software from official websites or trusted stores.\n" +
                     "  • Verify URLs carefully — watch for lookalike domains like 'Paypa1.com'."
                 },
-                FollowUp =
-                    "More on safe browsing, {n}:\n\n" +
-                    "  • Private/Incognito mode hides local history but NOT from your ISP.\n" +
-                    "  • DNS-over-HTTPS prevents your ISP from seeing which sites you visit.\n" +
-                    "  • Browser fingerprinting tracks you even without cookies.\n" +
-                    "  • Check any suspicious file at virustotal.com before opening it."
+               
             },
             new Topic
             {
                 Name = "data breach",
-                Keywords = new[] { "breach","data breach","leaked","have i been pwned","dark web","darkweb" },
+                Keywords = new[] { "breach","data breach","leaked","dark web","darkweb" },
                 Responses = new[]
                 {
                     "Data breach action plan for {n}:\n\n" +
@@ -361,12 +302,7 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Weak hashed passwords can still be cracked — use strong unique ones.\n" +
                     "  • Enable 2FA so a leaked password alone cannot compromise your account."
                 },
-                FollowUp =
-                    "More on data breaches, {n}:\n\n" +
-                    "  • The 2013 Yahoo breach exposed 3 billion accounts — the largest ever.\n" +
-                    "  • POPIA in South Africa requires organisations to report breaches.\n" +
-                    "  • A credit freeze prevents new accounts being opened in your name.\n" +
-                    "  • Dark web monitoring services alert you if your info is found for sale."
+                
             },
             new Topic
             {
@@ -386,17 +322,12 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Third-party cookies track you across websites — clear them regularly.\n" +
                     "  • Consider ProtonMail for encrypted private email."
                 },
-                FollowUp =
-                    "Deeper on privacy, {n}:\n\n" +
-                    "  • Browser fingerprinting identifies you without cookies — a growing threat.\n" +
-                    "  • The Tor network anonymises traffic by routing through multiple relays.\n" +
-                    "  • Data minimisation — only share what is required — is a great default habit.\n" +
-                    "  • POPIA gives South Africans rights over what data organisations hold on them."
+                
             },
             new Topic
             {
                 Name = "social engineering",
-                Keywords = new[] { "social engineering","manipulation","pretexting","impersonation","baiting","tailgating" },
+                Keywords = new[] { "social engineering","manipulation" },
                 Responses = new[]
                 {
                     "Social engineering exploits people, not systems, {n}!\n\n" +
@@ -411,12 +342,7 @@ namespace CyberSecurityAwarenessBot.Responses
                     "  • Authority and urgency are the top social engineering pressure tactics.\n" +
                     "  • Security awareness training dramatically reduces attack success rates."
                 },
-                FollowUp =
-                    "More on social engineering, {n}:\n\n" +
-                    "  • The 2020 Twitter hack used social engineering on Twitter employees.\n" +
-                    "  • Kevin Mitnick — one of history's most notorious hackers — relied almost entirely on it.\n" +
-                    "  • 'Quid pro quo' attacks offer something in exchange for your information.\n" +
-                    "  • Shred sensitive documents — physical security matters too."
+               
             },
             new Topic
             {
@@ -424,11 +350,10 @@ namespace CyberSecurityAwarenessBot.Responses
                 Keywords = new[] { "thank","thanks","bye","goodbye","see you","cheers","appreciate","take care" },
                 Responses = new[]
                 {
-                    "You are very welcome, {n}! Stay safe out there.",
-                    "Happy to help, {n}! Good habits are the best security tool. Take care!",
-                    "Goodbye, {n}! You are now better equipped to stay safe online."
+                  "You are very welcome, {n}! Stay safe out there.",
+                  "Goodbye, {n}! You are now better equipped to stay safe online."
                 },
-                FollowUp = "Come back anytime, {n}!"
+                
             }
         };
     }
