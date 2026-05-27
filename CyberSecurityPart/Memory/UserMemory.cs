@@ -1,9 +1,9 @@
 ﻿namespace CyberSecurityAwarenessBot.Memory
 {
-    /// <summary>
-    /// Remembers the user's name, favourite topic, and message count
-    /// so the bot can personalise responses throughout the session.
-    /// </summary>
+    
+    /// It remembers the user's name, favourite topic and message count
+    /// So the bot can personalise responses throughout the session.
+    
     public class UserMemory
     {
         public string Name { get; private set; } = "there";
