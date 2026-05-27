@@ -8,10 +8,10 @@
         public string Label { get; init; } = "Neutral";
     }
 
-    /// <summary>
+    
     /// Detects the user's emotional tone from keyword patterns
-    /// so the bot can respond with empathy and the right tone.
-    /// </summary>
+    /// So the bot can respond with empathy and the right tone.
+    
     public class SentimentDetector
     {
         private static readonly string[] Worried = { "worried", "scared", "afraid", "nervous", "anxious", "fear", "hacked", "unsafe", "vulnerable", "danger", "panicking", "oh no", "help me" };
